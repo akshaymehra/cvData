@@ -1,0 +1,327 @@
+[
+	{
+		"type": "education",
+		"heading": "Education",
+		"data": [
+			{
+				"date": "2019",
+				"institution": "Princeton University",
+				"location": "Princeton NJ",
+				"degree": "Ph.D., Geosciences",
+				"thesis": "Reconstructions of Ediacaran putative biomineralizers via a novel serial grinding and imaging technique",
+				"advisor": "Adam Maloof"
+			},
+			{
+				"date": "2011",
+				"institution": "Cornell University",
+				"location": "Ithaca, NY",
+				"degree": "B.Arch.",
+				"thesis": "Reclaiming the old Union Carbide factory site in Bhopal, India ",
+				"advisor": "Vincent Mulcahy and Mary Woods"
+			}
+		]
+	},
+	{
+		"type": "professional",
+		"heading": "Professional Experience",
+		"data": [
+			{
+				"date": "2019 -",
+				"role": "Neukom Postdoctoral Fellow",
+				"institution": "Dartmouth College",
+				"location": "Hanover, NH"
+			},
+			{
+				"date": "2011 - 2013",
+				"role": "Researcher",
+				"institution": "Situ Studio",
+				"location": "Brooklyn, NY"
+			}
+		]
+	},
+	{
+		"type": "publications",
+		"heading": "Publications",
+		"data" : [
+			{
+				"state": "in preparation",
+				"citation": "Eddy, M.P., Mehra, A., Pamukcu, A., DesOrmeau, J.W., Maloof, A.C., and Schoene, B. 20xx. Geochemical and textural evidence for efficient crystal settling in a large, silicic magma chamber"
+			},
+			{
+				"state": "in review",
+				"citation": "Mehra, A., Samuels, B., and Maloof, A.C. 20xx. A novel technique for producing three-dimensional data using serial sectioning and semi-automatic image classification"
+			},
+			{
+				"state": "published or in press",
+				"citation": "Mehra, A., Keller, B., Zhang, T., Tosca, N.J., McLennan, S.M., SGP Authors, Strauss, J.V. 2021. Curation and analysis of global sedimentary geochemical data to inform Earth history",
+				"journal": "GSA Today",
+				"link": "https://doi.org/10.1130/GSATG484A.1",
+				"linkText": "doi:10.1130/GSATG484A.1"
+			},
+			{
+				"state": "published or in press",
+				"citation": "Howes, B., Mehra, A., Maloof, A.C. 2021. Three‐dimensional morphometry of ooids in oolites: a new tool for more accurate and precise paleoenvironmental interpretation",
+				"journal": "Journal of Geophysical Research: Earth Surface",
+				"link": "https://doi.org/10.1029/2020JF005601",
+				"linkText": "doi:10.1029/2020JF005601"
+			},
+			{
+				"state": "published or in press",
+				"citation": "Mehra, A., Watters, W.A., Grotzinger, J.P., Maloof, A.C. 2020. Three-dimensional reconstructions of the putative metazoan Namapoikia show that it was a microbial construction",
+				"journal": ", Proceedings of the National Academy of Sciences of the United States of America",
+				"link": "https://doi.org/doi:10.1073/pnas.2009129117",
+				"linkText": "doi:10.1073/pnas.2009129117"
+			},
+			{
+				"state": "published or in press",
+				"citation" : "MacLennan, S.A., Eddy, M.P., Merschat, A., Mehra, A., Crockford, P., Maloof, A.C., Southworth, S., Schoene, B. 2019",
+				"journal" : "Geologic evidence for an icehouse Earth prior to the Sturtian global glaciation, Science Advances",
+				"link": "https://doi.org/doi:10.1126/sciadv.aay6647",
+				"linkText": "doi: 10.1126/sciadv.aay6647"
+			},
+			{
+				"state": "published or in press",
+				"citation": "Mehra, A. and Maloof, A.C. 2018. A multiscale approach reveals that Cloudina aggregates are detritus and not in situ reef constructions",
+				"journal": "Proceedings of the National Academy of Sciences of the United States of America",
+				"link": "https://doi.org/doi:10.1073/pnas.1719911115",
+				"linkText": "doi:10.1073/pnas.1719911115"
+			}
+		]
+	},
+	{
+		"type": "conferences",
+		"heading" : "Conference Proceedings",
+		"data" : [
+			{
+				"date": "2020",
+				"citation": "Mehra, A., Keller, B., Zhang, T., Tosca, N.J., McLennan, S.M., Strauss, J.V., Processing data and incorporating uncertainties in large geochemical compilations. GSA Annual Meeting, October 2020."
+			},
+			{
+				"date": "2020",
+				"citation": "Mehra, A., Eddy, M.P., Pamukcu, A.S., Schoene, B., and Maloof A.C., A method for extracting 3D modal mineralogy and textural data from plutonic rocks. GSA Annual Meeting, October 2020."
+			},
+			{
+				"date": "2019",
+				"citation": "Mehra, A., Watters, W.A., Grotzinger, J.P., and Maloof A.C., Namapoikia, a baffling organism. Northeastern Geobiology Meeting, Amherst, MA, March 2019."
+			},
+			{
+				"date": "2018",
+				"citation": "Mehra, A., Geyman, E., and Maloof A.C., Analysis of channel morphology using high resolution, drone-derived imagery of the tidal flat at Triple Goose Creek, Andros Island. GSA Annual Meeting, Indianapolis, IN, November 2018."
+			},
+			{
+				"date": "2018",
+				"citation": "Mehra, A. and Maloof A.C., Three-dimensional reconstruction and morphological analysis of Namapoikia, a putative Ediacaran sponge fossil, using serial grinding and imaging. GSA Annual Meeting, Indianapolis, IN, November 2018."
+			},
+			{
+				"date": "2018",
+				"citation": "Bolton, H., Mehra, A., Geyman, E., and Maloof A.C., Three-dimensional reconstructions of holocene and Neoproterozoic oolites to measure porosity, permeability, and volume-shape evolution of ooids. GSA Annual Meeting, Indianapolis, IN, November 2018."
+			},
+			{
+				"date": "2018",
+				"citation": "Mehra, A. and Maloof A.C., Three dimensional reconstructions of the earliest biomineralizers. Northeastern Geobiology, WHOI, April 2018."
+			},
+			{
+				"date": "2017",
+				"citation": "Maloof A.C. and Mehra, A., Constraining the role of an Ediacaran biomineralizer using a multiscale methodology. GSA Annual Meeting, Seattle WA, October 2017."
+			},
+			{
+				"date": "2017",
+				"citation": "Mehra, A. and Maloof, A.C., Using serial grinding and imaging techniques to produce three-dimensional models of samples with weak density contrast.  GSA Annual Meeting, Seattle WA, October 2017."
+			},
+			{
+				"date": "2016",
+				"citation": "Mehra, A. and Maloof, A.C., Digital reconstructions of Cloudina populations: an in-depth, three-dimensional study. AGU Fall Meeting, San Francisco CA, December 2016."
+			},
+			{
+				"date": "2013",
+				"citation": "Maloof, A.C., Samuels, B., Mehra, A., and Spatzier, A., An automated serial Grinding, Imaging and Reconstruction Instrument (GIRI) for digital modeling of samples with weak density contrasts. AGU Fall Meeting, San Francisco CA, December 2013."
+			}
+		]
+	},
+	{
+		"type": "teaching",
+		"heading": "Teaching",
+		"endnote": "These courses involved a significant fieldwork component that comprised a week-long trip to collect data for student research projects (locations in parentheses).  As part of my teaching duties, I was responsible for preparing supplies and logistics, as well as helping students with both data collection—especially with drones, differential GPS, and surveying equipment—and data analysis.",
+		"data": [
+			{
+				"date": "Spring 2020",
+				"role": "Instructor",
+				"course_number": "EARS 272",
+				"course_title": "Topics in historical geobiology"
+			},
+			{
+				"date": "Fall 2016",
+				"role": "Teaching assistant",
+				"course_number": "GEO 201",
+				"course_title": "Measuring climate change: Methods in data analysis & scientific writing",
+				"fieldwork": "Utah and New Mexico",
+				"hasEndnote": "true"
+			},
+			{
+				"date": "Spring 2016",
+				"role": "Teaching assistant",
+				"course_number": "GEO 370",
+				"course_title": "Sedimentology",
+				"fieldwork": "Andros Island, The Bahamas",
+				"hasEndnote": "true"
+			},
+			{
+				"date": "Fall 2015",
+				"role": "Teaching assistant",
+				"course_number": "FRS 124",
+				"course_title": "State of the Earth: Shifts & cycles",
+				"fieldwork": "France and Spain",
+				"hasEndnote": "true"
+			},
+			{
+				"date": "Fall 2014",
+				"role": "Teaching assistant",
+				"course_number": "GEO 201",
+				"course_title": "Measuring climate change: Methods in data analysis & scientific writing",
+				"fieldwork": "Utah and Nevada",
+				"hasEndnote": "true"
+			}
+		]
+	},
+	{
+		"type": "funding",
+		"heading": "Funding",
+		"data": [
+			{
+				"date": "2020",
+				"source": "CompX Faculty Grant",
+				"title": "Acquisition of fixed-wing unmanned aerial vehicles for training the next generation of scientists",
+				"amount": "40000",
+				"pi": "Mehra, A. (Lead PI, Dartmouth College) and Strauss, J.V. (Co-PI, Dartmouth College)"
+			},
+			{
+				"date": "2019",
+				"source": "Neukom Institute for Computational Science",
+				"title": "Postdoctoral fellowship",
+				"amount": "127500",
+				"pi": "Mehra, A. (Postdoctoral fellow, Dartmouth College)"
+			}
+		]
+	},
+	{
+		"type": "fieldExperience",
+		"heading": "Field Experience",
+		"data": [
+			{
+				"date": "2019",
+				"location": "Nadaleen Mountain, Yukon, Canada",
+				"length": "2 weeks",
+				"description": "Three-dimensional morphology of an early Paleozoic clinoform succession"
+			},
+			{
+				"date": "2019",
+				"location": "Silver Peak Range, Nevada",
+				"length": "4 weeks",
+				"description": "Stratigraphic and morphological expression of Archaeocyathid buildups"
+			},
+			{
+				"date": "2018",
+				"location": "Blue Ridge, Virginia, USA",
+				"length": "1 week",
+				"description": "Evidence for a Neoproterozoic glaciation"
+			},
+			{
+				"date": "2017",
+				"location": "North Cascades, Washington, USA",
+				"length": "2 weeks",
+				"description": "Textural evidence for the presence of a fossilized magma chamber"
+			},
+			{
+				"date": "2017",
+				"location": "Andros Island, The Bahamas",
+				"length": "1 week",
+				"description": "Morphology and hydrology of a tidal channel network"
+			},
+			{
+				"date": "2016",
+				"location": "Labrador, Canada",
+				"length": "1 week",
+				"description": "Stratigraphic and environmental context of Cambrian Archaeocyathid reefs"
+			},
+			{
+				"date": "2015",
+				"location": "Salient Mountain, Canada",
+				"length": "6 weeks",
+				"description": "Mapping, measuring, and sampling from a fossil-bearing Ediacaran stromatolite reef system"
+			},
+			{
+				"date": "2014",
+				"location": "Southern Namibia",
+				"length": "8 weeks",
+				"description": "Describing aggregates of Cloudina, one of the earliest biomineralizing organisms"
+			}
+		]
+	},
+	{
+		"type": "awards",
+		"heading": "Awards and Honors",
+		"data": [
+			{
+				"date": "2018",
+				"description": "Grand prize, AGU Data Visualization and Storytelling Contest"
+			},
+			{
+				"date": "2018",
+				"description": "Hanna Fellowship, Princeton University"
+			},
+			{
+				"date": "2017",
+				"description": "Runner-up, AGU Data Visualization and Storytelling Contest"
+			},
+					{
+				"date": "2017",
+				"description": "Fan Favorite, Princeton Research Day"
+			},
+					{
+				"date": "2016",
+				"description": "Runner-up, AGU Data Visualization and Storytelling Contest"
+			},
+			{
+				"date": "2016",
+				"description": "Arnold Guyot Teaching Award"
+			}
+		]
+	},
+	{
+		"type": "professionalActivities",
+		"heading": "Professional Activities",
+		"data": [
+			{
+				"role": "Reviewer",
+				"description": "NSF EAR IF; Geophysical Research Letters"
+			},
+			{
+				"role": "Co-organizer",
+				"description": "2020 Northeast Geobiology Symposium (delayed until 2021 due to COVID 19)"
+			},
+			{
+				"role": "Convener",
+				"description": "2019 GSA Annual Meeting: Hello (Ancient) World!: Exploring the Neoproterozoic to Cambrian Interval by Quantitatively Probing the Rock Record"
+			}
+		]
+
+	},
+	{
+		"type": "service",
+		"heading": "University and Professional Service",
+		"data": [
+			{
+				"date": "2020 -",
+				"description": "Postdoctoral Representative, Department of Earth Sciences Diversity, Equity, and Inclusion Committee"
+			},
+			{
+				"date": "2016 - 2018",
+				"description": "Vice President, Graduate Student Government"
+			},
+			{
+				"date": "2015",
+				"description": "President, Graduate Student Government"
+			}
+		]
+	}
+]

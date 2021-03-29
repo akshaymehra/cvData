@@ -1,0 +1,266 @@
+\documentclass[letterpaper, 10pt]{article}
+
+\usepackage{luacode}
+
+\usepackage[left=1in, top=1in, total={6.5in, 9in}]{geometry}
+
+\usepackage{booktabs}
+
+\usepackage{tabularx}
+
+\usepackage{hyperref} 
+\hypersetup{colorlinks, urlcolor=blue}
+\urlstyle{same}
+
+\usepackage{array}
+
+\usepackage[]{ltablex}
+\usepackage{makecell}
+\renewcommand{\cellalign}{tl}
+
+\setlength\LTleft{0pt}
+\setlength\LTright{0pt}
+\setlength{\LTpre}{0pt}
+\setlength{\LTpost}{0pt}
+
+\usepackage{titlesec}
+
+\titleformat*{\section}{\large\bfseries}
+
+\newcommand{\gutterSpacing}{0.125\textwidth}
+
+\newcolumntype{D}{>{\itshape\arraybackslash}p{\gutterSpacing}}
+\newcolumntype{R}{>{}p{\gutterSpacing}}
+
+\usepackage{hyphenat}
+
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Akshay Mehra}
+\rhead{\textit{Curriculum Vitae, \thepage\ of \pageref*{LastPage}}}
+\cfoot{}
+
+\usepackage{siunitx}
+
+% Custom command
+
+\newcommand{\headings}[1]{\section*{#1} \hrule \vspace{10pt}}
+
+\begin{document}
+
+% Ensures that the first page doesn't have the header...
+\thispagestyle{empty}
+
+\begin{center}
+	{\Large \textbf{Akshay Mehra}}\\
+	Department of Earth Sciences \\
+	225 Fairchild Hall \\
+	Hanover, NH 03755 \\
+	\href{mailto:akshay.k.mehra@dartmouth.edu}{akshay.k.mehra@dartmouth.edu} \\
+	\href{https://www.akshaymehra.com}{https://www.akshaymehra.com}\\
+\end{center}
+	
+
+\begin{luacode}
+	-- My name (for citations)
+	local myName = 'Mehra, A.'
+	local myNameStylized = '\\textbf{Mehra, A.}'
+	local f = io.open('cv.json', 'r')
+	local s = f:read('*a')
+	f:close()
+	require("lualibs.lua")
+	local data = utilities.json.tolua(s)
+	-- A nice little function to test if a string is empty
+	local function isEmpty(s)
+		return s == nil or s == ''
+	end
+	-- A little function to see if an array contains a value
+	local function matches(thisValue, arrayToMatch)
+		for index, value in pairs(arrayToMatch) do
+			if value == thisValue then
+				return true
+			end
+		end
+		return false
+	end
+	-- A little function to capitalize the first letter in a string
+	function firstToUpper(str)
+		return (str:gsub("^%l", string.upper))
+	end
+	-- Here, we prepare a string by replacing certain symbols with escape characters...this code is super hacky, but you can add to the escape list
+	function prepareString(str)
+		local escapeList = {"&"}
+		for _, v in ipairs(escapeList) do
+			local replaceWith = '\\'.. v 
+			str = str:gsub(v, replaceWith)
+		end
+		return str
+	end
+
+	local prettyprint
+	prettyprint = function (data)
+		for key, value in pairs(data) do
+			-- Okay, begin by printing out the headings
+			tex.print('\\headings{' .. value["heading"] .. '}')
+			-- Luacode has no switch statement, so we use a comprehensive if else chain
+			-- What we're doing here is relying on a simple conceit: that certain sections have the same basic layout
+			-- The most basic layout is last
+			if matches(value["type"], {"publications"}) then
+				-- Publications are challenging to lay out
+				-- We begin by assembling tables
+				-- Start by looking at the states of each publication
+				local states = {}
+				for dataKey, dataValue in ipairs(value["data"]) do
+					table.insert(states, dataValue["state"])
+				end
+				-- Add each manuscript status you want to show, in the order that you want it to come out
+				local orderedStates = {'in preparation', 'submitted', 'in review', 'published or in press'}
+				local pubCount = #states
+				for _, thisOrderedState in ipairs(orderedStates) do
+					local needsHeading = true
+					for pubIdx, pubState in ipairs(states) do
+						-- If this publication state matches this ordered state, then let's print it out 
+						if pubState == thisOrderedState then
+							if needsHeading then
+								tex.print('\\begin{flushleft}')
+								tex.print(firstToUpper(pubState))
+								tex.print('\\end{flushleft}')
+								tex.print('\\begin{centering}')
+								tex.print('\\renewcommand{\\arraystretch}{1.5}')
+								tex.print('\\begin{tabularx}{\\textwidth}{@{}D X@{}}')
+								needsHeading = false
+							end
+							local thisJournal = value["data"][pubIdx]["journal"]
+							if isEmpty(thisJournal) then
+								thisJournal = ''
+							else
+								thisJournal = ', \\textit{' .. thisJournal .. '}' 
+							end
+							local thisLink = value["data"][pubIdx]["link"]
+							if isEmpty(thisLink) then
+								thisLink = ''
+							else
+								thisLink = ', \\url{' .. thisLink .. '}'
+							end
+							local thisCitation = value["data"][pubIdx]["citation"] .. 
+							thisJournal .. thisLink .. '.' 
+							-- escape any problematic strings
+							thisCitation =  prepareString(thisCitation)
+							-- let's make my name bold
+							thisCitation = thisCitation:gsub(myName,  myNameStylized)
+							tex.print(pubCount .. '. & ' .. thisCitation .. '\\\\')
+							pubCount = pubCount - 1
+							if states[pubIdx + 1] ~= pubState then
+								tex.print('\\end{tabularx}')
+								tex.print('\\end{centering}')
+							end
+						end
+					end
+				end
+			elseif matches(value["type"], {"funding", "teaching"}) then
+				-- Calculate total funding
+				local fundingTotal = 0
+				if value["type"] == "funding" then
+					for _, val in ipairs(value["data"]) do
+						fundingTotal = fundingTotal + val["amount"]
+					end
+				end
+				-- An endnote symbol
+				local noteSymbol = '\\textsuperscript{\\dag}'
+				-- A special three column layout
+				tex.print('\\begin{center}') 
+				tex.print('\\renewcommand{\\arraystretch}{1.5}')
+				tex.print('\\begin{tabularx}{\\textwidth}{@{}D X R@{}}')
+				for dataKey, dataValue in ipairs(value["data"]) do
+					local columnOne = dataValue["date"]
+					if isEmpty(columnOne) then
+						columnOne = ''
+					end
+					local columnTwo = 'hi'
+					local columnThree = ''
+					if value["type"] == "funding" then
+						local piListing = dataValue["pi"]
+						piListing = piListing:gsub(myName,  myNameStylized)
+						columnTwo = '\\makecell[{{p{\\hsize}}}]{\\textit{' .. dataValue["title"] .. '} \\\\' .. dataValue["source"] .. '\\\\' .. piListing .. '}'
+						columnThree = '\\makecell[r]{\\SI[]{' .. dataValue["amount"] .. '}[\\$]{}}'
+					elseif value["type"] == "teaching" then
+						-- building this string iteratively
+						columnTwo = '\\makecell[{{p{\\hsize}}}]{'
+						if dataValue["hasEndnote"] then
+							columnTwo = columnTwo .. noteSymbol
+						end
+						local courseTitle =  prepareString(dataValue["course_title"])
+						columnTwo = columnTwo .. '\\textbf{' .. dataValue["course_number"] .. '}: ' .. courseTitle
+						local fieldWork = dataValue["fieldwork"]
+						if not isEmpty(fieldWork) then 
+							fieldWork = '(' .. prepareString(fieldWork) .. ')'
+							columnTwo = columnTwo .. ' \\\\ ' .. fieldWork  
+						end
+						columnTwo = columnTwo .. '}'
+						columnThree = '\\makecell[{{p{\\hsize}}}]{\\raggedleft \\textit{' .. dataValue["role"] .. '}}'
+					end
+					tex.print(columnOne .. ' & ' .. columnTwo .. ' & ' .. columnThree .. ' \\\\' )
+				end
+				-- Optionally, print out the funding total and footnotes
+				if value["type"] == "funding" then
+					-- tex.print('& Total funding: & \\SI[]{' .. fundingTotal .. '}[\\$]{}')
+				end 
+				tex.print('\\end{tabularx}')
+				tex.print('\\end{center}')
+				-- Add any endnotes
+				if value["type"] == "teaching" then
+					local endnote = value["endnote"]
+					if not isEmpty(endnote) then
+						tex.print(noteSymbol .. '\\textit{' .. prepareString(endnote) .. '}')
+					end
+				end
+			else
+				tex.print('\\begin{center}') 
+				tex.print('\\renewcommand{\\arraystretch}{1.5}')
+				tex.print('\\begin{tabularx}{\\textwidth}{@{}D X@{}}')
+				for dataKey, dataValue in ipairs(value["data"]) do
+					local columnOne = dataValue["date"]
+					if isEmpty(columnOne) then
+						columnOne = ''
+					end
+					-- note, in some cases, you want column one not to be a date
+					if value["type"] == "professionalActivities" then
+						columnOne = dataValue["role"]
+					end
+					local thisContents
+					if value["type"] == "education" then
+						thisContents = '\\makecell[{{p{\\hsize}}}]{' .. dataValue["institution"] .. ', ' .. dataValue["location"] .. ' \\\\ ' .. dataValue["degree"] .. ' \\\\ Thesis: ' .. dataValue["thesis"] .. ' \\\\ Advisor(s): ' .. dataValue["advisor"] .. '}'
+					elseif value["type"] == "professional" then
+						thisContents = '\\makecell[{{p{\\hsize}}}]{' .. dataValue["role"] .. ' \\\\ ' .. dataValue["institution"] .. ', ' .. dataValue["location"] .. '}'
+					elseif value["type"] == "conferences" then
+						thisContents = dataValue["citation"]
+						thisContents =  prepareString(thisContents)
+						-- Make my name bold
+						thisContents = thisContents:gsub(myName,  myNameStylized)
+					elseif value["type"] == "fieldExperience" then
+						thisContents = '\\makecell[{{p{\\hsize}}}]{' .. dataValue["location"] .. ', [' .. dataValue["length"] .. '] \\\\ \\textit{' .. dataValue["description"] .. '}}'
+					else
+						thisContents = dataValue["description"]
+					end
+					if isEmpty(thisContents) then
+						thisContents = ''
+					end
+					tex.print(columnOne .. ' & ' .. thisContents .. ' \\\\')
+				end
+				tex.print('\\end{tabularx}')
+				tex.print('\\end{center}')
+			end
+			-- One conceit to manual adjustment: add sections here that you want to force a page break after
+			local sectionsToBreakAfter = {'conferences'}
+			if matches(value["type"], sectionsToBreakAfter) then
+				tex.print('\\pagebreak')
+			end
+		end
+	end
+	prettyprint(data)
+\end{luacode}
+
+\end{document}
+

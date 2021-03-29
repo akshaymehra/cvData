@@ -1,0 +1,99 @@
+{{ define "main" }}
+	<div class="six_column">
+	{{ .Content }}	
+	{{ $cv := getJSON "data/cv.json"}}
+	{{ range $cv }}
+		{{ $this_type := .type }}
+			<div class="sixths_full six_column cv_element" id="{{ .type }}">
+				<div class="sixths_full">
+					<h3 class="cv_heading">{{ .heading }}</h3>
+				</div>
+				{{ $.Scratch.Set "state" "" }}
+				{{ $.Scratch.Set "new" false }}
+				{{ $.Scratch.Set "numPubs" (len .data) }}
+				{{ range $index, $element := .data }}
+					{{ if eq $this_type "publications" }}
+						{{ if ne ($.Scratch.Get "state") .state }}
+							{{ $.Scratch.Set "state" .state }}
+							{{ $.Scratch.Set "new" true }}
+						{{ else }}
+							{{ $.Scratch.Set "new" false }}
+						{{ end }}
+					{{ end }}
+					{{ if $.Scratch.Get "new" }}
+						<div class="sixths_full cv_subheading">
+							<h4>{{ humanize .state }}</h4>
+						</div>
+					{{ end }}
+						<div class="cv_date sixths_sixth start_left">
+							{{ if eq $this_type "publications" }}
+								{{ sub ($.Scratch.Get "numPubs") $index }}.
+							{{ else if eq $this_type "professionalActivities" }}
+								{{ .role }}
+							{{ else }}
+								{{ .date }}
+							{{ end }}
+						</div>
+						{{ if eq $this_type "funding" }}
+							<div class="four_sixths">
+								{{ .title }}
+								<br />
+								{{ .source }}
+								<br /> 
+								{{ replace .pi "Mehra, A." "<strong>Mehra, A.</strong>" | safeHTML }}
+							</div>
+							<div class="right sixths_sixth">
+								${{ .amount }}
+							</div>
+						{{ else }}
+							<div class="sixths_two_thirds">
+								{{ if eq $this_type "education" }}
+									<strong>{{ .institution }}</strong>, {{ .location }}
+									<br />
+									{{ .degree }}
+									<br />
+									Thesis: {{ .thesis }}
+									<br />
+									Advisor(s): {{ .advisor }}
+								{{ else if or (eq $this_type "conferences") (eq $this_type "publications")  }}
+									{{ $.Scratch.Set "citationText" (replace .citation "Mehra, A." "<strong>Mehra, A.</strong>") }}
+									{{ if eq $this_type "publications" }}
+										{{ with .journal }}
+											{{ $.Scratch.Set "citationText" (printf "%s%s%s%s" ($.Scratch.Get "citationText") ", <em>" . "</em>") }}
+										{{ end }}
+										{{ $.Scratch.Set "linkText" "<em>Link</em>"}}
+										{{ with .linkText }}
+											{{ $.Scratch.Set "linkText" . }}
+										{{ end }}
+										{{ with .link }}
+											{{ $.Scratch.Set "citationText" (printf "%s%s%s%s%s%s%s" (trim ($.Scratch.Get "citationText") ".") ", " "<a href=" . " target=\"_blank\">" ($.Scratch.Get "linkText") "</a>")}}
+										{{ end }}
+										{{ $.Scratch.Set "citationText" (printf "%s%s" ($.Scratch.Get "citationText") ".") }}
+									{{ end }}
+									{{ safeHTML ($.Scratch.Get "citationText") }}
+								{{ else if (eq $this_type "teaching") }}
+									{{ .role }} 
+									<br />
+									<strong>{{ .course_number }}</strong>: {{ .course_title }}
+									<br />
+									{{ .description }}
+								{{ else if (eq $this_type "fieldExperience") }}
+									{{ .location }} [{{ .length }}]
+									<br />
+									{{ .description }}
+								{{ else if (eq $this_type "professional") }}
+									{{ .role }}
+									<br />
+									{{ safeHTML .institution }},{{ .location }}
+									<br />
+									{{ .description }}
+								{{ else }}
+									{{ .description }}
+								{{ end }}
+							</div>
+						{{ end }}
+				{{ end }}
+			</div>
+		{{ end }}
+	</div>
+{{ end }}
